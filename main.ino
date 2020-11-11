@@ -1,8 +1,10 @@
 
 #include "ChainableLED.h"
-
+#include "pitches.h"  //音符库
 #define NUM_OF_LED  1
 #define YELLOW_INTERVAL 200
+
+#define X -1
 //板子上Ax是D（14+x）
 //clk_pin A5 data_pin A4
 
@@ -15,15 +17,27 @@ int sw3pin = 15;
 int buzzlepin=10;
 
 //乐谱
+int note[]={X,X,NOTE_E6,NOTE_D6,NOTE_G6,NOTE_G6,NOTE_A6,NOTE_A6,NOTE_B6,NOTE_G6,NOTE_D6,
+NOTE_E6,NOTE_D6,NOTE_G6,NOTE_G6,NOTE_A6,NOTE_A6,NOTE_B6,NOTE_A6,NOTE_E6,NOTE_D6,NOTE_G6,
+NOTE_G6,NOTE_A6,NOTE_A6,NOTE_B6,NOTE_G6,NOTE_D6,NOTE_E6,NOTE_D6,NOTE_G6,NOTE_G6,NOTE_A6,NOTE_G6};
 
+int dura[]={2,2,1,1,2,2,2,2,2,2,2,1,1,2,2,2,2,2,4,1,1,2,2,2,2,2,2,2,1,1,2,2,2,8};
+
+int len=sizeof(note)/sizeof(int);
 
 void setup() {
   pinMode(sw1pin, INPUT);
   pinMode(sw2pin, INPUT);
+  //pinMode(sw3pin,INPUT);
   leds.init();//初始化时已经设置灭
   leds.setColorRGB(0, 0, 0, 0);
   pinMode(buzzlepin,OUTPUT);
-  //开机音乐
+  for(int i=0;i<len;++i)
+  {
+    tone(buzzlepin,note[i]);
+    delay(200*dura[i]);
+  }
+  noTone(buzzlepin);
 }
 int key1val = 0;
 int key2val = 0;
@@ -64,8 +78,7 @@ void loop() {
       case 4:
         leds.setColorRGB(0, 0, 0, 255);break;
     }
-
-
     ++count2;
   }
+
 }
