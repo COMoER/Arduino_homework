@@ -12,4 +12,4 @@
 - 例：NOTE_A4 代表6
 - 例：NOTE_A6 代表6..（右边.是升调)
 ### 团子大家族简谱
-![text] https://github.com/COMoER/Arduino_homework/blob/main/22a04e434fae416cb37adc8c728d4021.jpg
+![avatar] (https://github.com/COMoER/Arduino_homework/blob/main/22a04e434fae416cb37adc8c728d4021.jpg)
